@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static "styles/style.css" %}">
+</head>
+<body>
+    <nav class='navigation-bar'>
+        <div class='left-side'>
+            <h4 class='invent'>Inventory App</h4>
+            <a href="{% url 'create' %}">Add Product</a>
+            <a href="{% url 'product_list' %}">Show Product</a>
+        </div>
+        <div class='right-side'>
+            <form method="POST" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button class="logout-btn" type="submit">Logout</button>
+            </form>
+            <a href="{% url 'profile' %}"> <button class="profile-btn">Profile</button></a>
+        </div>
+    </nav>
+    <div class="home-container">
+
+        <div class="top-part">
+            <h1 class="top-h1" >Welcome to the Inventory Management System</h1>
+            <p>Manage your products efficiently and effectivly</p>
+            <hr class="line">
+        </div>
+        <div class="bottom-part">
+            Use the navigation bar to add, view, update or delete the products.
+            <a href="{% url 'product_list' %}"><button class="product-btn" type="buttton">View Products</button></a>
+        </div>
+
+
+    </div>
+</body>
+</html>

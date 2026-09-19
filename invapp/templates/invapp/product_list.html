@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static "styles/style.css" %}">
+</head>
+<body>
+    <div class="table-container">
+        <h1>Products</h1>
+        <form class="search-container" method="GET">
+            {% csrf_token %}
+            <input  type="text" name="search" placeholder="Search">
+            <button type="submit">Search</button>
+
+            <select class="sort" name="sort">
+                <option value="">Sort By</option>
+                <option value="name">Name (A-Z)</option>
+                <option value="-name">Name (Z-A)</option>
+                <option value="price">Price (A-Z)</option>
+                <option value="-price">Price (Z-A)</option>
+                <option value="quantity">Quantity (A-Z)</option>
+                <option value="-quantity">Quantity (Z-A)</option>
+                
+            </select>
+            <select class="category" name="category">
+                <option value="elctronics">Elctronics</option>
+                <option value="computers">Computers</option>
+                <option value="accessories">Accessories</option>
+                <option value="furniture">Furniture</option>
+            </select>
+        </form>
+        <table>
+            <tr class="table-header">
+                <th></th>
+                <th class='product-id'>Product_id </th>
+                <th>Category</th>
+                <th>Name</th>
+                <th>Sku</th>
+                <th> Price </th>
+                <th>Quantity</th>
+                <th>Supplier</th>
+                <th>Action</th>
+            </tr>
+            {% for product in products %}
+                <tr>
+                    <td> {% if product.image %} <img src="{{ product.image.url }}" width="60" height="60"> {% else %} <span class="span1">No Image</span> {% endif %} </td>
+                    <td>{{ product.product_id }}</td>
+                    <td>{{ product.category }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.sku }}</td>
+                    <td>{{ product.price }}</td>
+                    <td class="td">{{ product.quantity }} 
+                        {% if product.quantity < 5 %} <div class="low"></div> {% endif %}
+                    </td>
+                    <td>{{ product.supplier }}</td>
+                    <td>
+
+                    <a href="{% url 'update' product.product_id %}"><button class="update-btn">Update</button></a>
+                    <a href="{% url 'delete' product.product_id %}"><button class="delete-btn">Delete</button>
+                    <a href="{% url 'detail' product.product_id %}"><button class="detail-btn">View</button></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        <div class="pagination">
+            {% if products.has_previous %}
+                <a class="page-link" href="?page=1">First</a>
+                <a class="page-link" href="?page={{ products.previous_page_number }}">Previous</a>
+             {% endif %}
+
+             
+             {% for num in page_numbers %}
+                <a class="page-link-spe" href="?page={{ num }}"> {{ num }}</a>
+             {% endfor %}
+
+             {% if products.has_next %}
+                <a class="page-link" href="?page={{ products.next_page_number }}"> Next </a>
+                <a class="page-link" href="?page={{ products.paginator.num_pages }}"> Last</a>
+             {% endif %}
+
+           
+        </div>
+    </div>
+
+</body>
+</html>
