@@ -53,8 +53,6 @@ def create_read_view(request):
             Q(name__icontains=search) |
             Q(sku__icontains=search)
         )
-        
-
     if sort:
         products = products.order_by(sort)
     if category:
@@ -164,4 +162,3 @@ def create_user_profile(request):
                                                    'total_quantity': total_quantity,
                                                     'products': products,
                                                     'profiles': profiles})
-
