@@ -1,6 +1,5 @@
 from django.test import TestCase, Client
 from invapp.models import Product, Profile
-import json
 from django.urls import reverse, resolve
 from django.contrib.auth.models import User
 
