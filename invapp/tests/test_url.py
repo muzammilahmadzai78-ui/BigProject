@@ -12,7 +12,6 @@ from invapp.views import (
     logout_view
 
 )
-
 class TestUrls(SimpleTestCase):
     def test_urls_resolved(self):
         url = reverse('home')
@@ -50,6 +49,3 @@ class TestUrls(SimpleTestCase):
     def test_url_logout(self):
         url = reverse('logout')
         self.assertEqual(resolve(url).func, logout_view)
-        
-
-

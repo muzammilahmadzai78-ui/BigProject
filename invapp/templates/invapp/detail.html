@@ -10,7 +10,10 @@
 <body>
    <div class="detail-container">
         <div class="detail-container-child">
-            <img src="{{ product.image.url }}" width="160px" height="160px">
+            {% if product.image  %}
+                <img src="{{ product.image.url }}" width="160px" height="160px">
+             {% endif %}
+            
             <div>
                 <h1>{{ product.name }}</h1>
             </div>

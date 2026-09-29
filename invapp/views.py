@@ -34,6 +34,8 @@ def create_home_view(request):
             return redirect('product_list')
 
     return render(request, 'invapp/product_form.html', {'form': form})
+
+
 @login_required
 def create_product_detail(request, product_id):
     product = Product.objects.get(product_id=product_id, user=request.user)

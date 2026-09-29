@@ -11,7 +11,10 @@
 
     <div class="profile-container">
         <div class="profile-container-child">
-            <img class="profile-img" src="{{ profiles.image.url }}">
+            {% if profile.image %} 
+                <img class="profile-img" src="{{ profiles.image.url }}">
+            {% endif %}
+            
             <div>
                 <h1> Welcome, {{ user.username }}</h1>
             </div>
