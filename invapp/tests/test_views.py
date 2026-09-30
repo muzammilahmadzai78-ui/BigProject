@@ -1,4 +1,6 @@
 from django.test import TestCase, client
+from django.test import TestCase, Client
+from invapp.models import Product, Profile
 from django.urls import reverse, resolve
 from invapp.models import Product, Profile
 from django.contrib.auth.models import User
