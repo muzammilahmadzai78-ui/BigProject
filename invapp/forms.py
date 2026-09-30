@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ['image', 'product_id', 'name', 'sku', 'price', 'quantity', 'supplier', 'category']
+        fields = ['image', 'name', 'sku', 'price', 'quantity', 'supplier', 'category']
         labels = {
             'product_id': 'Product ID',
             'name': 'Name',

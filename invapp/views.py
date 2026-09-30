@@ -27,8 +27,9 @@ def create_home_view(request):
     form = ProductForm()
     if request.method == "POST":
         form = ProductForm(request.POST, request.FILES)
-        product = form.save(commit=False)
+        print(form.errors)
         if form.is_valid():
+            product = form.save(commit=False)
             product.user = request.user
             form.save()
             return redirect('product_list')
@@ -59,7 +60,6 @@ def create_read_view(request):
         products = products.order_by(sort)
     if category:
         products = products.filter(category=category)
-
     paginator = Paginator(products, 2)
     page_number = request.GET.get('page')
     products = paginator.get_page(page_number)
@@ -80,8 +80,9 @@ def create_update_view(request, product_id):
     form = ProductForm()
     if request.method == "POST":
         form = ProductForm(request.POST, instance=product)
-        form.save()
-        return redirect('product_list')
+        if form.is_valid():
+            form.save()
+            return redirect('product_list')
     return render(request, 'invapp/product_form.html', {'form': form})
 
 
@@ -122,7 +123,7 @@ def register_account(request):
     else:
         form = RegisterForm()
         form1 = ProfileForm()
-        return render(request, 'invapp/register.html', {'form': form, 'form1': form1})
+    return render(request, 'invapp/register.html', {'form': form, 'form1': form1})
 
 
 
