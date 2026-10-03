@@ -12,7 +12,7 @@
         <div class='left-side'>
             <h4 class='invent'>Inventory App</h4>
             <a href="{% url 'create' %}">Add Product</a>
-            <a href="{% url 'product_list' %}">Show Product</a>
+            <a class="show-product" href="{% url 'product_list' %}">Show Product</a>
         </div>
         <div class='right-side'>
             <form method="POST" action="{% url 'logout' %}">

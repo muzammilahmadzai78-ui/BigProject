@@ -49,7 +49,7 @@
                     <td> {% if product.image %} <img src="{{ product.image.url }}" width="60" height="60"> {% else %} <span class="span1">No Image</span> {% endif %} </td>
                     <td>{{ product.product_id }}</td>
                     <td>{{ product.category }}</td>
-                    <td>{{ product.name }}</td>
+                    <td class="product-name">{{ product.name }}</td>
                     <td>{{ product.sku }}</td>
                     <td>{{ product.price }}</td>
                     <td class="td">{{ product.quantity }} 
@@ -60,7 +60,7 @@
 
                     <a href="{% url 'update' product.product_id %}"><button class="update-btn">Update</button></a>
                     <a href="{% url 'delete' product.product_id %}"><button class="delete-btn">Delete</button>
-                    <a href="{% url 'detail' product.product_id %}"><button class="detail-btn">View</button></a>
+                    <a class="detail-product" href="{% url 'detail' product.product_id %}"><button class="detail-btn">View</button></a>
                     </td>
                 </tr>
             {% endfor %}
